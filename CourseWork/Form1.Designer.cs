@@ -45,37 +45,43 @@
             this.FAQCommonGame = new System.Windows.Forms.Button();
             this.FAQMultipleGame = new System.Windows.Forms.Button();
             this.Text6 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.Balance = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CommonGameButton
             // 
             this.CommonGameButton.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CommonGameButton.Location = new System.Drawing.Point(326, 287);
+            this.CommonGameButton.Location = new System.Drawing.Point(372, 191);
             this.CommonGameButton.Name = "CommonGameButton";
             this.CommonGameButton.Size = new System.Drawing.Size(97, 28);
             this.CommonGameButton.TabIndex = 0;
             this.CommonGameButton.Text = "CommonGame";
             this.CommonGameButton.UseVisualStyleBackColor = true;
+            this.CommonGameButton.Visible = false;
             // 
             // MultipleGameButton
             // 
             this.MultipleGameButton.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.MultipleGameButton.Location = new System.Drawing.Point(223, 287);
+            this.MultipleGameButton.Location = new System.Drawing.Point(65, 190);
             this.MultipleGameButton.Name = "MultipleGameButton";
             this.MultipleGameButton.Size = new System.Drawing.Size(97, 28);
             this.MultipleGameButton.TabIndex = 1;
             this.MultipleGameButton.Text = "MultipleGame";
             this.MultipleGameButton.UseVisualStyleBackColor = true;
+            this.MultipleGameButton.Visible = false;
             // 
             // ControlGameButton
             // 
-            this.ControlGameButton.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ControlGameButton.Location = new System.Drawing.Point(120, 287);
+            this.ControlGameButton.Font = new System.Drawing.Font("Comic Sans MS", 14F);
+            this.ControlGameButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ControlGameButton.Location = new System.Drawing.Point(189, 137);
             this.ControlGameButton.Name = "ControlGameButton";
-            this.ControlGameButton.Size = new System.Drawing.Size(97, 28);
+            this.ControlGameButton.Size = new System.Drawing.Size(141, 51);
             this.ControlGameButton.TabIndex = 2;
-            this.ControlGameButton.Text = "ControlGame";
+            this.ControlGameButton.Text = "Играть";
             this.ControlGameButton.UseVisualStyleBackColor = true;
+            this.ControlGameButton.Click += new System.EventHandler(this.ControlGameButton_Click);
             // 
             // ButtonOfCancel
             // 
@@ -94,7 +100,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(211, 13);
+            this.label1.Location = new System.Drawing.Point(218, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 27);
             this.label1.TabIndex = 4;
@@ -103,7 +109,7 @@
             // FAQButton
             // 
             this.FAQButton.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FAQButton.Location = new System.Drawing.Point(391, 15);
+            this.FAQButton.Location = new System.Drawing.Point(411, 15);
             this.FAQButton.Name = "FAQButton";
             this.FAQButton.Size = new System.Drawing.Size(97, 28);
             this.FAQButton.TabIndex = 5;
@@ -235,29 +241,54 @@
             this.Text6.Text = "Или пока игрок не заберет свой выигрыш";
             this.Text6.Visible = false;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Comic Sans MS", 8.25F);
+            this.checkBox1.Location = new System.Drawing.Point(372, 49);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(136, 19);
+            this.checkBox1.TabIndex = 18;
+            this.checkBox1.Text = "Контрольный режим";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
+            // 
+            // Balance
+            // 
+            this.Balance.AutoSize = true;
+            this.Balance.Font = new System.Drawing.Font("Comic Sans MS", 12F);
+            this.Balance.Location = new System.Drawing.Point(368, 71);
+            this.Balance.Name = "Balance";
+            this.Balance.Size = new System.Drawing.Size(106, 23);
+            this.Balance.TabIndex = 19;
+            this.Balance.Text = "1000 рублей";
+            this.Balance.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(497, 327);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(520, 327);
+            this.Controls.Add(this.Balance);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.CommonGameButton);
             this.Controls.Add(this.MultipleGameButton);
             this.Controls.Add(this.ControlGameButton);
-            this.Controls.Add(this.Text6);
             this.Controls.Add(this.FAQMultipleGame);
             this.Controls.Add(this.FAQCommonGame);
             this.Controls.Add(this.FAQControlGame);
-            this.Controls.Add(this.Text4);
-            this.Controls.Add(this.Text3);
-            this.Controls.Add(this.Text5);
-            this.Controls.Add(this.Text2);
-            this.Controls.Add(this.Text1);
-            this.Controls.Add(this.Text8);
-            this.Controls.Add(this.Text7);
             this.Controls.Add(this.FAQButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ButtonOfCancel);
+            this.Controls.Add(this.Text8);
+            this.Controls.Add(this.Text7);
+            this.Controls.Add(this.Text6);
+            this.Controls.Add(this.Text5);
+            this.Controls.Add(this.Text4);
+            this.Controls.Add(this.Text3);
+            this.Controls.Add(this.Text2);
+            this.Controls.Add(this.Text1);
             this.Name = "Form1";
             this.Text = "Лотерея";
             this.ResumeLayout(false);
@@ -284,6 +315,8 @@
         private System.Windows.Forms.Button FAQCommonGame;
         private System.Windows.Forms.Button FAQMultipleGame;
         private System.Windows.Forms.Label Text6;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label Balance;
     }
 }
 
