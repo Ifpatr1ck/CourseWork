@@ -40,6 +40,8 @@ namespace CourseWork
 
         private void ButtonOfCancel_Click(object sender, EventArgs e)
         {
+            OpenCellButton.Visible = false;
+            dataGridView1.Visible = false;
             FAQCommonGame.BackColor = Color.White;
             FAQControlGame.BackColor = Color.White;
             FAQMultipleGame.BackColor = Color.White;
@@ -66,6 +68,8 @@ namespace CourseWork
             FAQCommonGame.Visible = false;
             FAQControlGame.Visible = false;
             FAQMultipleGame.Visible = false;
+            Balance.Visible = false;
+            BuyTicketButton.Visible = false;
 
         }
 
@@ -117,7 +121,33 @@ namespace CourseWork
 
         private void ControlGameButton_Click(object sender, EventArgs e)
         {
+            ButtonOfCancel.Visible = true;
+            BuyTicketButton.Visible = true;
+            Balance.Visible = true;
+            FAQButton.Visible = false;
+            ControlGameButton.Visible = false;
+        }
 
+        private void BuyTicketButton_Click(object sender, EventArgs e)
+        {
+            OpenCellButton.Visible = true;
+            dataGridView1.ColumnCount = 2;
+            dataGridView1.RowCount = 2;
+            dataGridView1.Visible = true;
+           
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int x = e.RowIndex;
+            int y = e.ColumnIndex;
+            //dataGridView1[y][x];
         }
     }
 }

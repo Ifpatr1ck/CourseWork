@@ -47,6 +47,10 @@
             this.Text6 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.Balance = new System.Windows.Forms.Label();
+            this.BuyTicketButton = new System.Windows.Forms.Button();
+            this.OpenCellButton = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // CommonGameButton
@@ -245,7 +249,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Comic Sans MS", 8.25F);
-            this.checkBox1.Location = new System.Drawing.Point(372, 49);
+            this.checkBox1.Location = new System.Drawing.Point(389, 49);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(136, 19);
             this.checkBox1.TabIndex = 18;
@@ -257,12 +261,47 @@
             // 
             this.Balance.AutoSize = true;
             this.Balance.Font = new System.Drawing.Font("Comic Sans MS", 12F);
-            this.Balance.Location = new System.Drawing.Point(368, 71);
+            this.Balance.Location = new System.Drawing.Point(456, 71);
             this.Balance.Name = "Balance";
-            this.Balance.Size = new System.Drawing.Size(106, 23);
+            this.Balance.Size = new System.Drawing.Size(64, 23);
             this.Balance.TabIndex = 19;
-            this.Balance.Text = "1000 рублей";
+            this.Balance.Text = "рублей";
             this.Balance.Visible = false;
+            // 
+            // BuyTicketButton
+            // 
+            this.BuyTicketButton.Location = new System.Drawing.Point(212, 229);
+            this.BuyTicketButton.Name = "BuyTicketButton";
+            this.BuyTicketButton.Size = new System.Drawing.Size(94, 32);
+            this.BuyTicketButton.TabIndex = 21;
+            this.BuyTicketButton.Text = "Купить билет";
+            this.BuyTicketButton.UseVisualStyleBackColor = true;
+            this.BuyTicketButton.Visible = false;
+            this.BuyTicketButton.Click += new System.EventHandler(this.BuyTicketButton_Click);
+            // 
+            // OpenCellButton
+            // 
+            this.OpenCellButton.Location = new System.Drawing.Point(375, 234);
+            this.OpenCellButton.Name = "OpenCellButton";
+            this.OpenCellButton.Size = new System.Drawing.Size(75, 23);
+            this.OpenCellButton.TabIndex = 22;
+            this.OpenCellButton.Text = "Раскрыть поле";
+            this.OpenCellButton.UseVisualStyleBackColor = true;
+            this.OpenCellButton.Visible = false;
+            this.OpenCellButton.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ColumnHeadersVisible = false;
+            this.dataGridView1.Location = new System.Drawing.Point(156, 49);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowTemplate.Height = 45;
+            this.dataGridView1.Size = new System.Drawing.Size(227, 93);
+            this.dataGridView1.TabIndex = 23;
+            this.dataGridView1.Visible = false;
             // 
             // Form1
             // 
@@ -270,11 +309,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(520, 327);
+            this.Controls.Add(this.ControlGameButton);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.OpenCellButton);
+            this.Controls.Add(this.BuyTicketButton);
             this.Controls.Add(this.Balance);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.CommonGameButton);
             this.Controls.Add(this.MultipleGameButton);
-            this.Controls.Add(this.ControlGameButton);
             this.Controls.Add(this.FAQMultipleGame);
             this.Controls.Add(this.FAQCommonGame);
             this.Controls.Add(this.FAQControlGame);
@@ -282,15 +324,16 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ButtonOfCancel);
             this.Controls.Add(this.Text8);
-            this.Controls.Add(this.Text7);
-            this.Controls.Add(this.Text6);
-            this.Controls.Add(this.Text5);
-            this.Controls.Add(this.Text4);
-            this.Controls.Add(this.Text3);
-            this.Controls.Add(this.Text2);
             this.Controls.Add(this.Text1);
+            this.Controls.Add(this.Text2);
+            this.Controls.Add(this.Text3);
+            this.Controls.Add(this.Text4);
+            this.Controls.Add(this.Text5);
+            this.Controls.Add(this.Text6);
+            this.Controls.Add(this.Text7);
             this.Name = "Form1";
             this.Text = "Лотерея";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -317,6 +360,9 @@
         private System.Windows.Forms.Label Text6;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label Balance;
+        private System.Windows.Forms.Button BuyTicketButton;
+        private System.Windows.Forms.Button OpenCellButton;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 
