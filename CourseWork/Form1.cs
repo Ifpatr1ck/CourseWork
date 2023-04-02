@@ -35,13 +35,28 @@ namespace CourseWork
             dataGridView2.Visible = false;
 
         }
+        void result()
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    if ((int)dataGridView1[j, i].Value == 1)
+                    {
+                        dataGridView2[j, i].Style.BackColor = Color.Red;
+                        dataGridView2[j, i].Value = "$$$";
+                    }
+                    else dataGridView2[j, i].Style.BackColor = Color.Red;
+                }
+            }
+        }
         public Form1()
         {
             InitializeComponent();
         }
         bool FIRSTcontrolgame = true;
         Random rand = new Random();
-        public int x, y,money = 1100;
+        public int x, y, money = 1100;
         private void FAQButton_Click(object sender, EventArgs e)
         {
             ExitButton.Visible = false;
@@ -203,7 +218,7 @@ namespace CourseWork
             dataGridView2.Visible = true;
             OpenCellButton.Visible = true;
             //Clear the cells
-            for (int i = 0; i < 2; i++) 
+            for (int i = 0; i < 2; i++)
             {
                 for (int j = 0; j < 2; j++)
                 {
@@ -213,13 +228,13 @@ namespace CourseWork
             }
             bool boolVar = true;
             //fill random 2 cells "1" and 2 cell "0"
-            while (boolVar) 
+            while (boolVar)
             {
                 for (int i = 0; i < 2; i++)
                 {
                     for (int j = 0; j < 2; j++)
                     {
-                        dataGridView1[j, i].Value = rand.Next(0, 2); 
+                        dataGridView1[j, i].Value = rand.Next(0, 2);
                         spisok.Add((int)dataGridView1[j, i].Value);
                     }
                 }
@@ -228,7 +243,8 @@ namespace CourseWork
                 else spisok.Clear();
                 count = 0;
             }
-
+            y1 = -1;
+            x1 = -1;
         }
         //Receiving coordinates of click's cell
         private void dataGridView2_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -242,8 +258,9 @@ namespace CourseWork
             if (FIRSTcontrolgame)
             {
                 Balance.Visible = false;
-                MainMenu();
+                result();
                 MessageBox.Show("Теперь вам доступны новые режими, с ними можно ознамиться в разделе 'FAQ'");
+                MainMenu();
                 FIRSTcontrolgame = false;
                 count = 0;
                 PickUpButton.Visible = false;
@@ -267,18 +284,7 @@ namespace CourseWork
                 }
                 OpenCellButton.Visible = false;
                 if (Debt == 0) ActiveCredit = false;
-                for (int i = 0; i < 2; i++)
-                {
-                    for (int j = 0; j < 2; j++)
-                    {
-                        if ((int)dataGridView1[j, i].Value == 1)
-                        {
-                            dataGridView2[j, i].Style.BackColor = Color.Green;
-                            dataGridView2[j, i].Value = "$$$";
-                        }
-                        else dataGridView2[j, i].Style.BackColor = Color.Red;
-                    }
-                }
+                result();
                 PickUpButton.Visible = false;
                 CommonGameButton.Visible = false;
                 MultipleGameButton.Visible = false;
@@ -322,102 +328,105 @@ namespace CourseWork
             Balance.Visible = true;
             ButtonOfCancel.Visible = true;
         }
-
+        public int y1 = -1, x1 = -1;
         private void OpenCellButton_Click(object sender, EventArgs e)
         {
-            if ((int)dataGridView1[y, x].Value == 1)
-            {
-                count++;
-                dataGridView2[y, x].Value = "$$$";
-                dataGridView2[y, x].Style.BackColor = Color.Green;
-
-            }
-            else
+            if ((int)dataGridView1[y, x].Value == 0)
             {
                 if (FIRSTcontrolgame)
                 {
                     count = 0;
                     FIRSTcontrolgame = false;
-                    MainMenu();
-                    AttensionText.Visible = false;
-                    AttensionText2.Visible = false;
-                    AttensionText3.Visible = false;
-                    AttensionText4.Visible = false;
+                    result();
                     MessageBox.Show("Ты проиграл, но теперь тебе доступны новые режимы игры. Ознакомится с ними ты можешь в разделе 'FAQ'");
-                }
-                else
-                {
-                    count = 0;
-                    if(money < 100) if (!ActiveCredit) CreditButton.Visible = true;
-
-                    for (int i = 0; i < 2; i++)
-                    {
-                        for (int j = 0; j < 2; j++)
-                        {
-                            if ((int)dataGridView1[j,i].Value == 1)
-                            {
-                                dataGridView2[j, i].Style.BackColor = Color.Red;
-                                dataGridView2[j, i].Value = "$$$";
-                            }
-                            else dataGridView2[j, i].Style.BackColor = Color.Red;
-                        }
-                    }
-                    OpenCellButton.Visible = false;
-                    PickUpButton.Visible = false;
-                    CommonGameButton_Click(sender, e);
+                    MainMenu();
                     AttensionText.Visible = false;
                     AttensionText2.Visible = false;
                     AttensionText3.Visible = false;
                     AttensionText4.Visible = false;
                 }
-            }
-
-            if (count == 1)
-            {
-                PickUpButton.Visible = true;
-            }
-            if (count == 2)
-            {
-                if(FIRSTcontrolgame)
-                {
-                    FIRSTcontrolgame = false;
-                    count = 0;
-                    PickUpButton.Visible = false;
-                    MessageBox.Show("Ты победил! И теперь тебе доступны новые режимы игры. Ознакомится с ними ты можешь в разделе 'FAQ'");
-                    MainMenu();
-                }
                 else
                 {
-                    if(ActiveCredit)
+                    count = 0;
+                    if (money >= 100)
                     {
-                        MoneyText.Text = Convert.ToString(money + 475);
-                        money += 475;
-                        Debt -= 25;
+                        result();
+                        OpenCellButton.Visible = false;
+                        PickUpButton.Visible = false;
+                        CommonGameButton_Click(sender, e);
+                        AttensionText.Visible = false;
+                        AttensionText2.Visible = false;
+                        AttensionText3.Visible = false;
+                        AttensionText4.Visible = false;
                     }
                     else
                     {
-                        MoneyText.Text = Convert.ToString(money + 500);
-                        money += 500;
-                    }
-                    if (Debt == 0) ActiveCredit = false;
-                    for (int i = 0; i < 2; i++)
-                    {
-                        for (int j = 0; j < 2; j++)
+                        if (!ActiveCredit) CreditButton.Visible = true;
+                        else
                         {
-                            if ((int)dataGridView1[j, i].Value == 1)
-                            {
-                                dataGridView2[j, i].Style.BackColor = Color.Green;
-                                dataGridView2[j, i].Value = "$$$";
-                            }
-                            else dataGridView2[j, i].Style.BackColor = Color.Red;
+                            count = 0;
+                            result();
+                            MessageBox.Show("Вы проиграли все свои деньги: c");
+                            MainMenu();
+
                         }
                     }
-                    count = 0;
-                    PickUpButton.Visible = false;
-                    CommonGameButton_Click(sender, e);
+                }
 
+            }
+            else
+            {
+                if (y1 != y || x1 != x)
+                {
+                    count++;
+                    PickUpButton.Visible = true;
+                    dataGridView2[y, x].Value = "$$$";
+                    dataGridView2[y, x].Style.BackColor = Color.Green;
+                    y1 = y;
+                    x1 = x;
+
+
+                    if (count == 1)
+                    {
+                        PickUpButton.Visible = true;
+                    }
+                    else
+                    {
+                        if (FIRSTcontrolgame)
+                        {
+                            result();
+                            FIRSTcontrolgame = false;
+                            count = 0;
+                            PickUpButton.Visible = false;
+                            MessageBox.Show("Ты победил! И теперь тебе доступны новые режимы игры. Ознакомится с ними ты можешь в разделе 'FAQ'");
+                            MainMenu();
+                        }
+                        else
+                        {
+                            if (ActiveCredit)
+                            {
+                                result();
+                                MoneyText.Text = Convert.ToString(money + 475);
+                                money += 475;
+                                Debt -= 25;
+                                CommonGameButton_Click(sender, e);
+                                if (Debt == 0) ActiveCredit = false;
+                            }
+                            else
+                            {
+                                MoneyText.Text = Convert.ToString(money + 500);
+                                money += 500;
+                                result();
+                                count = 0;
+                                PickUpButton.Visible = false;
+                                CommonGameButton_Click(sender, e);
+                            }
+                        }
+
+                    }
                 }
             }
         }
     }
 }
+
