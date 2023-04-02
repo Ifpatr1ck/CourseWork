@@ -13,15 +13,37 @@ namespace CourseWork
 {
     public partial class Form1 : Form
     {
+        void MainMenu()
+        {
+            ExitButton.Visible = true;
+            OpenCellButton.Visible = false;
+            AuthorButton.Visible = true;
+            ControlGameButton.Visible = true;
+            FAQButton.Visible = true;
+            PickUpButton.Visible = false;
+            AttensionText.Visible = false;
+            AttensionText2.Visible = false;
+            AttensionText3.Visible = false;
+            AttensionText4.Visible = false;
+            ButtonOfCancel.Visible = false;
+            BuyTicketButton.Visible = false;
+            checkBox1.Visible = false;
+            dataGridView1.Visible = false;
+            dataGridView2.Visible = false;
+
+        }
         public Form1()
         {
             InitializeComponent();
         }
-        bool controlgame = true;
+        bool FIRSTcontrolgame = true;
         Random rand = new Random();
         public int x, y;
         private void FAQButton_Click(object sender, EventArgs e)
         {
+            ExitButton.Visible = false;
+            Balance.Visible = false;
+            AuthorButton.Visible = false;
             ButtonOfCancel.Visible = true;
             ControlGameButton.Visible = false;
             CommonGameButton.Visible = false;
@@ -42,6 +64,10 @@ namespace CourseWork
         }
         private void ButtonOfCancel_Click(object sender, EventArgs e)
         {
+            CommonGameButton.Visible = false;
+            MultipleGameButton.Visible = false;
+            ExitButton.Visible = true;
+            AuthorButton.Visible = true;
             OpenCellButton.Visible = false;
             dataGridView1.Visible = false;
             dataGridView2.Visible = false;
@@ -73,7 +99,6 @@ namespace CourseWork
             FAQMultipleGame.Visible = false;
             Balance.Visible = false;
             BuyTicketButton.Visible = false;
-
         }
         private void FAQCommonGame_Click(object sender, EventArgs e)
         {
@@ -120,23 +145,29 @@ namespace CourseWork
         }
         private void ControlGameButton_Click(object sender, EventArgs e)
         {
-            if (controlgame)
+            if (FIRSTcontrolgame)
             {
+                ExitButton.Visible = false;
+                Balance.Visible = false;
+                AuthorButton.Visible = false;
+                PickUpButton.Visible = false;
                 AttensionText.Visible = true;
                 AttensionText2.Visible = true;
                 AttensionText3.Visible = true;
                 AttensionText4.Visible = true;
                 ButtonOfCancel.Visible = true;
                 BuyTicketButton.Visible = true;
-                Balance.Visible = true;
                 FAQButton.Visible = false;
                 ControlGameButton.Visible = false;
                 dataGridView2.Visible = false;
                 OpenCellButton.Visible = false;
             }
-            else 
+            else
             {
-
+                CommonGameButton.Visible = true;
+                MultipleGameButton.Visible = true;
+                ExitButton.Visible = false;
+                AuthorButton.Visible = false;
                 AttensionText.Visible = false;
                 AttensionText2.Visible = false;
                 AttensionText3.Visible = false;
@@ -144,8 +175,6 @@ namespace CourseWork
                 ButtonOfCancel.Visible = false;
                 BuyTicketButton.Visible = false;
                 ButtonOfCancel.Visible = true;
-                BuyTicketButton.Visible = true;
-                Balance.Visible = true;
                 FAQButton.Visible = false;
                 ControlGameButton.Visible = false;
                 dataGridView2.Visible = false;
@@ -154,6 +183,7 @@ namespace CourseWork
         }
         private void BuyTicketButton_Click(object sender, EventArgs e)
         {
+            PickUpButton.Visible = false;
             ButtonOfCancel.Visible = false;
             BuyTicketButton.Visible = false;
             List<int> spisok = new List<int> { };
@@ -163,9 +193,9 @@ namespace CourseWork
             dataGridView2.ColumnCount = 2;
             dataGridView2.RowCount = 2;
             dataGridView2.Visible = true;
-
             OpenCellButton.Visible = true;
-            for (int i = 0; i < 2; i++)
+            //Clear the cells
+            for (int i = 0; i < 2; i++) 
             {
                 for (int j = 0; j < 2; j++)
                 {
@@ -173,37 +203,82 @@ namespace CourseWork
                     dataGridView2[j, i].Style.BackColor = Color.White;
                 }
             }
-            bool giga = true;
-            while(giga)
+            bool boolVar = true;
+            //fill random 2 cells "1" and 2 cell "0"
+            while (boolVar) 
             {
-                int z, count = 0;
                 for (int i = 0; i < 2; i++)
                 {
                     for (int j = 0; j < 2; j++)
                     {
-                        z = rand.Next(0, 2);
-                        dataGridView1[j, i].Value = z;
-                        spisok.Add(z);
+                        dataGridView1[j, i].Value = rand.Next(0, 2); 
+                        spisok.Add((int)dataGridView1[j, i].Value);
                     }
                 }
                 foreach (int i in spisok) if (i == 1) count++;
-                if (count == 2) giga = false;
+                if (count == 2) boolVar = false;
                 else spisok.Clear();
                 count = 0;
             }
 
         }
+        //Receiving coordinates of click's cell
         private void dataGridView2_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             x = e.RowIndex;
             y = e.ColumnIndex;
         }
+        int count = 0; //count of prize field
+        private void PickUpButton_Click(object sender, EventArgs e)
+        {
+            if (FIRSTcontrolgame)
+            {
+                Balance.Visible = false;
+                MainMenu();
+                MessageBox.Show("Теперь вам доступны новые режими, с ними можно ознамиться в разделе 'FAQ'");
+                FIRSTcontrolgame = false;
+                count = 0;
+                PickUpButton.Visible = false;
+                AttensionText.Visible = false;
+                AttensionText2.Visible = false;
+                AttensionText3.Visible = false;
+                AttensionText4.Visible = false;
+            }
+            else
+            {
+                count = 0;
+                BuyTicketButton_Click(sender, e);
+                PickUpButton.Visible = false;
+                AttensionText.Visible = false;
+                AttensionText2.Visible = false;
+                AttensionText3.Visible = false;
+                AttensionText4.Visible = false;
+            }
+        }
+        //Just need more funtion of game, because else it looking like trash
+        private void AuthorButton_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://vk.com/ifpatrick");
+        }
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        private void CommonGameButton_Click(object sender, EventArgs e)
+        {
+            BuyTicketButton_Click(sender, e);
+            OpenCellButton.Visible = true;
+            MultipleGameButton.Visible = false;
+            CommonGameButton.Visible = false;
+            dataGridView2.Visible = true;
+            checkBox1.Visible = true;
+            Balance.Visible = true;
+            ButtonOfCancel.Visible = true;
+        }
 
-        int count = 0;
         private void OpenCellButton_Click(object sender, EventArgs e)
         {
-            int z = (int)dataGridView1[y, x].Value;
-            if (z == 1)
+            if ((int)dataGridView1[y, x].Value == 1)
             {
                 count++;
                 dataGridView2[y, x].Value = 1;
@@ -212,16 +287,50 @@ namespace CourseWork
             }
             else
             {
-                count = 0;
-                MessageBox.Show("Ты проиграл :с");
-                ControlGameButton_Click(sender, e);
-                controlgame = false;
+                if (FIRSTcontrolgame)
+                {
+                    count = 0;
+                    FIRSTcontrolgame = false;
+                    MainMenu();
+                    AttensionText.Visible = false;
+                    AttensionText2.Visible = false;
+                    AttensionText3.Visible = false;
+                    AttensionText4.Visible = false;
+                    MessageBox.Show("Ты проиграл, но теперь тебе доступны новые режимы игры. Ознакомится с ними ты можешь в разделе 'FAQ'");
+                }
+                else
+                {
+                    count = 0;
+                    MessageBox.Show("Ты проиграл :с");
+                    ControlGameButton_Click(sender, e);
+                    AttensionText.Visible = false;
+                    AttensionText2.Visible = false;
+                    AttensionText3.Visible = false;
+                    AttensionText4.Visible = false;
+                }
+            }
+
+            if (count == 1)
+            {
+                PickUpButton.Visible = true;
             }
             if (count == 2)
             {
-                MessageBox.Show("Ты победил! :D");
-                ControlGameButton_Click(sender, e);
-                controlgame = false;
+                if(FIRSTcontrolgame)
+                {
+                    FIRSTcontrolgame = false;
+                    count = 0;
+                    PickUpButton.Visible = false;
+                    MessageBox.Show("Ты победил! И теперь тебе доступны новые режимы игры. Ознакомится с ними ты можешь в разделе 'FAQ'");
+                    MainMenu();
+                }
+                else
+                {
+                    count = 0;
+                    PickUpButton.Visible = false;
+                    MessageBox.Show("Ты победил! :D");
+                    ControlGameButton_Click(sender, e);
+                }
             }
         }
     }

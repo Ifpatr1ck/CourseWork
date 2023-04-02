@@ -55,6 +55,9 @@
             this.AttensionText2 = new System.Windows.Forms.Label();
             this.AttensionText3 = new System.Windows.Forms.Label();
             this.AttensionText4 = new System.Windows.Forms.Label();
+            this.PickUpButton = new System.Windows.Forms.Button();
+            this.AuthorButton = new System.Windows.Forms.Button();
+            this.ExitButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -62,22 +65,23 @@
             // CommonGameButton
             // 
             this.CommonGameButton.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CommonGameButton.Location = new System.Drawing.Point(372, 191);
+            this.CommonGameButton.Location = new System.Drawing.Point(325, 191);
             this.CommonGameButton.Name = "CommonGameButton";
-            this.CommonGameButton.Size = new System.Drawing.Size(97, 28);
+            this.CommonGameButton.Size = new System.Drawing.Size(124, 47);
             this.CommonGameButton.TabIndex = 0;
-            this.CommonGameButton.Text = "CommonGame";
+            this.CommonGameButton.Text = "Обычная игра";
             this.CommonGameButton.UseVisualStyleBackColor = true;
             this.CommonGameButton.Visible = false;
+            this.CommonGameButton.Click += new System.EventHandler(this.CommonGameButton_Click);
             // 
             // MultipleGameButton
             // 
             this.MultipleGameButton.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.MultipleGameButton.Location = new System.Drawing.Point(65, 190);
             this.MultipleGameButton.Name = "MultipleGameButton";
-            this.MultipleGameButton.Size = new System.Drawing.Size(97, 28);
+            this.MultipleGameButton.Size = new System.Drawing.Size(124, 46);
             this.MultipleGameButton.TabIndex = 1;
-            this.MultipleGameButton.Text = "MultipleGame";
+            this.MultipleGameButton.Text = "Залповый режим";
             this.MultipleGameButton.UseVisualStyleBackColor = true;
             this.MultipleGameButton.Visible = false;
             // 
@@ -142,7 +146,7 @@
             // 
             this.Text8.AutoSize = true;
             this.Text8.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Text8.Location = new System.Drawing.Point(8, 214);
+            this.Text8.Location = new System.Drawing.Point(8, 213);
             this.Text8.Name = "Text8";
             this.Text8.Size = new System.Drawing.Size(442, 23);
             this.Text8.TabIndex = 7;
@@ -267,7 +271,7 @@
             // 
             this.Balance.AutoSize = true;
             this.Balance.Font = new System.Drawing.Font("Comic Sans MS", 12F);
-            this.Balance.Location = new System.Drawing.Point(421, 108);
+            this.Balance.Location = new System.Drawing.Point(443, 157);
             this.Balance.Name = "Balance";
             this.Balance.Size = new System.Drawing.Size(64, 23);
             this.Balance.TabIndex = 19;
@@ -289,7 +293,7 @@
             // 
             this.OpenCellButton.Location = new System.Drawing.Point(413, 82);
             this.OpenCellButton.Name = "OpenCellButton";
-            this.OpenCellButton.Size = new System.Drawing.Size(75, 23);
+            this.OpenCellButton.Size = new System.Drawing.Size(94, 23);
             this.OpenCellButton.TabIndex = 22;
             this.OpenCellButton.Text = "Раскрыть поле";
             this.OpenCellButton.UseVisualStyleBackColor = true;
@@ -331,7 +335,7 @@
             this.AttensionText.AutoSize = true;
             this.AttensionText.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Bold);
             this.AttensionText.ForeColor = System.Drawing.Color.Red;
-            this.AttensionText.Location = new System.Drawing.Point(194, 13);
+            this.AttensionText.Location = new System.Drawing.Point(195, 196);
             this.AttensionText.Name = "AttensionText";
             this.AttensionText.Size = new System.Drawing.Size(125, 27);
             this.AttensionText.TabIndex = 25;
@@ -342,7 +346,7 @@
             // 
             this.AttensionText2.AutoSize = true;
             this.AttensionText2.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Bold);
-            this.AttensionText2.Location = new System.Drawing.Point(23, 174);
+            this.AttensionText2.Location = new System.Drawing.Point(17, 221);
             this.AttensionText2.Name = "AttensionText2";
             this.AttensionText2.Size = new System.Drawing.Size(419, 27);
             this.AttensionText2.TabIndex = 26;
@@ -353,7 +357,7 @@
             // 
             this.AttensionText3.AutoSize = true;
             this.AttensionText3.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Bold);
-            this.AttensionText3.Location = new System.Drawing.Point(23, 201);
+            this.AttensionText3.Location = new System.Drawing.Point(17, 241);
             this.AttensionText3.Name = "AttensionText3";
             this.AttensionText3.Size = new System.Drawing.Size(446, 27);
             this.AttensionText3.TabIndex = 27;
@@ -364,12 +368,45 @@
             // 
             this.AttensionText4.AutoSize = true;
             this.AttensionText4.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Bold);
-            this.AttensionText4.Location = new System.Drawing.Point(23, 228);
+            this.AttensionText4.Location = new System.Drawing.Point(17, 264);
             this.AttensionText4.Name = "AttensionText4";
             this.AttensionText4.Size = new System.Drawing.Size(276, 27);
             this.AttensionText4.TabIndex = 28;
             this.AttensionText4.Text = "Будет записан в статистику";
             this.AttensionText4.Visible = false;
+            // 
+            // PickUpButton
+            // 
+            this.PickUpButton.Location = new System.Drawing.Point(413, 111);
+            this.PickUpButton.Name = "PickUpButton";
+            this.PickUpButton.Size = new System.Drawing.Size(98, 43);
+            this.PickUpButton.TabIndex = 29;
+            this.PickUpButton.Text = "Забрать выигрыш";
+            this.PickUpButton.UseVisualStyleBackColor = true;
+            this.PickUpButton.Visible = false;
+            this.PickUpButton.Click += new System.EventHandler(this.PickUpButton_Click);
+            // 
+            // AuthorButton
+            // 
+            this.AuthorButton.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AuthorButton.Location = new System.Drawing.Point(209, 233);
+            this.AuthorButton.Name = "AuthorButton";
+            this.AuthorButton.Size = new System.Drawing.Size(97, 28);
+            this.AuthorButton.TabIndex = 30;
+            this.AuthorButton.Text = "Создатель";
+            this.AuthorButton.UseVisualStyleBackColor = true;
+            this.AuthorButton.Click += new System.EventHandler(this.AuthorButton_Click);
+            // 
+            // ExitButton
+            // 
+            this.ExitButton.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ExitButton.Location = new System.Drawing.Point(209, 271);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(97, 28);
+            this.ExitButton.TabIndex = 31;
+            this.ExitButton.Text = "Выход";
+            this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // Form1
             // 
@@ -377,10 +414,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(520, 327);
-            this.Controls.Add(this.AttensionText4);
-            this.Controls.Add(this.AttensionText3);
-            this.Controls.Add(this.AttensionText2);
-            this.Controls.Add(this.AttensionText);
+            this.Controls.Add(this.ExitButton);
+            this.Controls.Add(this.AuthorButton);
+            this.Controls.Add(this.PickUpButton);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.ControlGameButton);
             this.Controls.Add(this.dataGridView1);
@@ -404,6 +440,10 @@
             this.Controls.Add(this.Text5);
             this.Controls.Add(this.Text6);
             this.Controls.Add(this.Text7);
+            this.Controls.Add(this.AttensionText2);
+            this.Controls.Add(this.AttensionText3);
+            this.Controls.Add(this.AttensionText4);
+            this.Controls.Add(this.AttensionText);
             this.Name = "Form1";
             this.Text = "Лотерея";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -442,6 +482,9 @@
         private System.Windows.Forms.Label AttensionText2;
         private System.Windows.Forms.Label AttensionText3;
         private System.Windows.Forms.Label AttensionText4;
+        private System.Windows.Forms.Button PickUpButton;
+        private System.Windows.Forms.Button AuthorButton;
+        private System.Windows.Forms.Button ExitButton;
     }
 }
 
