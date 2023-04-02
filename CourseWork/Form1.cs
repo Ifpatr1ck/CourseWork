@@ -124,9 +124,12 @@ namespace CourseWork
             Balance.Visible = true;
             FAQButton.Visible = false;
             ControlGameButton.Visible = false;
+            dataGridView2.Visible = false;
+            OpenCellButton.Visible = false;
         }
         private void BuyTicketButton_Click(object sender, EventArgs e)
         {
+            ButtonOfCancel.Visible = false;
             BuyTicketButton.Visible = false;
             List<int> spisok = new List<int> { };
             OpenCellButton.Visible = true;
@@ -135,11 +138,14 @@ namespace CourseWork
             dataGridView2.ColumnCount = 2;
             dataGridView2.RowCount = 2;
             dataGridView2.Visible = true;
+
+            OpenCellButton.Visible = true;
             for (int i = 0; i < 2; i++)
             {
                 for (int j = 0; j < 2; j++)
                 {
                     dataGridView2[j, i].Value = null;
+                    dataGridView2[j, i].Style.BackColor = Color.White;
                 }
             }
             bool giga = true;
@@ -167,19 +173,28 @@ namespace CourseWork
             x = e.RowIndex;
             y = e.ColumnIndex;
         }
+
+        int count = 0;
         private void OpenCellButton_Click(object sender, EventArgs e)
         {
-
             int z = (int)dataGridView1[y, x].Value;
             if (z == 1)
             {
+                count++;
                 dataGridView2[y, x].Value = 1;
-                dataGridView1[y, x].Style.BackColor = Color.Green;
+                dataGridView2[y, x].Style.BackColor = Color.Green;
+
             }
             else
             {
-                dataGridView2[y, x].Value = 0;
-                dataGridView1[y, x].Style.BackColor = Color.Red;
+                count = 0;
+                MessageBox.Show("Ты проиграл :с");
+                ControlGameButton_Click(sender, e);
+            }
+            if (count == 2)
+            {
+                MessageBox.Show("Ты победил! :D");
+                ControlGameButton_Click(sender, e);
             }
         }
     }
