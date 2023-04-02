@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,6 +17,7 @@ namespace CourseWork
     {
         void MainMenu()
         {
+            MoneyText.Visible = false;
             ExitButton.Visible = true;
             OpenCellButton.Visible = false;
             AuthorButton.Visible = true;
@@ -38,7 +41,7 @@ namespace CourseWork
         }
         bool FIRSTcontrolgame = true;
         Random rand = new Random();
-        public int x, y;
+        public int x, y,money = 1100;
         private void FAQButton_Click(object sender, EventArgs e)
         {
             ExitButton.Visible = false;
@@ -64,6 +67,7 @@ namespace CourseWork
         }
         private void ButtonOfCancel_Click(object sender, EventArgs e)
         {
+            MoneyText.Visible = false;
             CommonGameButton.Visible = false;
             MultipleGameButton.Visible = false;
             ExitButton.Visible = true;
@@ -164,6 +168,8 @@ namespace CourseWork
             }
             else
             {
+                MoneyText.Text = "1000";
+                money = 1000;
                 CommonGameButton.Visible = true;
                 MultipleGameButton.Visible = true;
                 ExitButton.Visible = false;
@@ -183,6 +189,8 @@ namespace CourseWork
         }
         private void BuyTicketButton_Click(object sender, EventArgs e)
         {
+            MoneyText.Text = Convert.ToString(money - 100);
+            money -= 100;
             PickUpButton.Visible = false;
             ButtonOfCancel.Visible = false;
             BuyTicketButton.Visible = false;
@@ -246,8 +254,37 @@ namespace CourseWork
             }
             else
             {
+                if (ActiveCredit)
+                {
+                    MoneyText.Text = Convert.ToString(money + 125);
+                    money += 125;
+                    Debt -= 25;
+                }
+                else
+                {
+                    MoneyText.Text = Convert.ToString(money + 150);
+                    money += 150;
+                }
+                OpenCellButton.Visible = false;
+                if (Debt == 0) ActiveCredit = false;
+                for (int i = 0; i < 2; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if ((int)dataGridView1[j, i].Value == 1)
+                        {
+                            dataGridView2[j, i].Style.BackColor = Color.Green;
+                            dataGridView2[j, i].Value = "$$$";
+                        }
+                        else dataGridView2[j, i].Style.BackColor = Color.Red;
+                    }
+                }
+                PickUpButton.Visible = false;
+                CommonGameButton.Visible = false;
+                MultipleGameButton.Visible = false;
                 count = 0;
-                BuyTicketButton_Click(sender, e);
+                CommonGameButton_Click(sender, e);
+                ButtonOfCancel.Visible = true;
                 PickUpButton.Visible = false;
                 AttensionText.Visible = false;
                 AttensionText2.Visible = false;
@@ -264,13 +301,23 @@ namespace CourseWork
         {
             Application.Exit();
         }
+        bool ActiveCredit = false;
+        public int Debt;
+        private void CreditButton_Click(object sender, EventArgs e)
+        {
+            Debt = 500;
+            ActiveCredit = true;
+            CreditButton.Visible = false;
+            MoneyText.Text = Convert.ToString(money + 500);
+            money += 500;
+        }
+
         private void CommonGameButton_Click(object sender, EventArgs e)
         {
-            BuyTicketButton_Click(sender, e);
-            OpenCellButton.Visible = true;
+            MoneyText.Visible = true;
+            BuyTicketButton.Visible = true;
             MultipleGameButton.Visible = false;
             CommonGameButton.Visible = false;
-            dataGridView2.Visible = true;
             checkBox1.Visible = true;
             Balance.Visible = true;
             ButtonOfCancel.Visible = true;
@@ -281,7 +328,7 @@ namespace CourseWork
             if ((int)dataGridView1[y, x].Value == 1)
             {
                 count++;
-                dataGridView2[y, x].Value = 1;
+                dataGridView2[y, x].Value = "$$$";
                 dataGridView2[y, x].Style.BackColor = Color.Green;
 
             }
@@ -301,8 +348,23 @@ namespace CourseWork
                 else
                 {
                     count = 0;
-                    MessageBox.Show("Ты проиграл :с");
-                    ControlGameButton_Click(sender, e);
+                    if(money < 100) if (!ActiveCredit) CreditButton.Visible = true;
+
+                    for (int i = 0; i < 2; i++)
+                    {
+                        for (int j = 0; j < 2; j++)
+                        {
+                            if ((int)dataGridView1[j,i].Value == 1)
+                            {
+                                dataGridView2[j, i].Style.BackColor = Color.Red;
+                                dataGridView2[j, i].Value = "$$$";
+                            }
+                            else dataGridView2[j, i].Style.BackColor = Color.Red;
+                        }
+                    }
+                    OpenCellButton.Visible = false;
+                    PickUpButton.Visible = false;
+                    CommonGameButton_Click(sender, e);
                     AttensionText.Visible = false;
                     AttensionText2.Visible = false;
                     AttensionText3.Visible = false;
@@ -326,10 +388,34 @@ namespace CourseWork
                 }
                 else
                 {
+                    if(ActiveCredit)
+                    {
+                        MoneyText.Text = Convert.ToString(money + 475);
+                        money += 475;
+                        Debt -= 25;
+                    }
+                    else
+                    {
+                        MoneyText.Text = Convert.ToString(money + 500);
+                        money += 500;
+                    }
+                    if (Debt == 0) ActiveCredit = false;
+                    for (int i = 0; i < 2; i++)
+                    {
+                        for (int j = 0; j < 2; j++)
+                        {
+                            if ((int)dataGridView1[j, i].Value == 1)
+                            {
+                                dataGridView2[j, i].Style.BackColor = Color.Green;
+                                dataGridView2[j, i].Value = "$$$";
+                            }
+                            else dataGridView2[j, i].Style.BackColor = Color.Red;
+                        }
+                    }
                     count = 0;
                     PickUpButton.Visible = false;
-                    MessageBox.Show("Ты победил! :D");
-                    ControlGameButton_Click(sender, e);
+                    CommonGameButton_Click(sender, e);
+
                 }
             }
         }

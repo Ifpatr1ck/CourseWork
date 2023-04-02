@@ -58,6 +58,8 @@
             this.PickUpButton = new System.Windows.Forms.Button();
             this.AuthorButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
+            this.MoneyText = new System.Windows.Forms.Label();
+            this.CreditButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -271,7 +273,7 @@
             // 
             this.Balance.AutoSize = true;
             this.Balance.Font = new System.Drawing.Font("Comic Sans MS", 12F);
-            this.Balance.Location = new System.Drawing.Point(443, 157);
+            this.Balance.Location = new System.Drawing.Point(444, 165);
             this.Balance.Name = "Balance";
             this.Balance.Size = new System.Drawing.Size(64, 23);
             this.Balance.TabIndex = 19;
@@ -408,12 +410,36 @@
             this.ExitButton.UseVisualStyleBackColor = true;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
+            // MoneyText
+            // 
+            this.MoneyText.AutoSize = true;
+            this.MoneyText.Font = new System.Drawing.Font("Comic Sans MS", 12F);
+            this.MoneyText.Location = new System.Drawing.Point(402, 165);
+            this.MoneyText.Name = "MoneyText";
+            this.MoneyText.Size = new System.Drawing.Size(47, 23);
+            this.MoneyText.TabIndex = 32;
+            this.MoneyText.Text = "1000";
+            this.MoneyText.Visible = false;
+            // 
+            // CreditButton
+            // 
+            this.CreditButton.Location = new System.Drawing.Point(392, 193);
+            this.CreditButton.Name = "CreditButton";
+            this.CreditButton.Size = new System.Drawing.Size(119, 32);
+            this.CreditButton.TabIndex = 33;
+            this.CreditButton.Text = "Взять кредит 500р";
+            this.CreditButton.UseVisualStyleBackColor = true;
+            this.CreditButton.Visible = false;
+            this.CreditButton.Click += new System.EventHandler(this.CreditButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(520, 327);
+            this.Controls.Add(this.CreditButton);
+            this.Controls.Add(this.MoneyText);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.AuthorButton);
             this.Controls.Add(this.PickUpButton);
@@ -485,6 +511,8 @@
         private System.Windows.Forms.Button PickUpButton;
         private System.Windows.Forms.Button AuthorButton;
         private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.Label MoneyText;
+        private System.Windows.Forms.Button CreditButton;
     }
 }
 
