@@ -51,6 +51,10 @@
             this.OpenCellButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.AttensionText = new System.Windows.Forms.Label();
+            this.AttensionText2 = new System.Windows.Forms.Label();
+            this.AttensionText3 = new System.Windows.Forms.Label();
+            this.AttensionText4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -115,7 +119,7 @@
             // FAQButton
             // 
             this.FAQButton.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FAQButton.Location = new System.Drawing.Point(411, 15);
+            this.FAQButton.Location = new System.Drawing.Point(209, 195);
             this.FAQButton.Name = "FAQButton";
             this.FAQButton.Size = new System.Drawing.Size(97, 28);
             this.FAQButton.TabIndex = 5;
@@ -251,7 +255,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Comic Sans MS", 8.25F);
-            this.checkBox1.Location = new System.Drawing.Point(389, 49);
+            this.checkBox1.Location = new System.Drawing.Point(384, 18);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(136, 19);
             this.checkBox1.TabIndex = 18;
@@ -263,7 +267,7 @@
             // 
             this.Balance.AutoSize = true;
             this.Balance.Font = new System.Drawing.Font("Comic Sans MS", 12F);
-            this.Balance.Location = new System.Drawing.Point(456, 71);
+            this.Balance.Location = new System.Drawing.Point(421, 108);
             this.Balance.Name = "Balance";
             this.Balance.Size = new System.Drawing.Size(64, 23);
             this.Balance.TabIndex = 19;
@@ -272,7 +276,7 @@
             // 
             // BuyTicketButton
             // 
-            this.BuyTicketButton.Location = new System.Drawing.Point(212, 229);
+            this.BuyTicketButton.Location = new System.Drawing.Point(413, 44);
             this.BuyTicketButton.Name = "BuyTicketButton";
             this.BuyTicketButton.Size = new System.Drawing.Size(94, 32);
             this.BuyTicketButton.TabIndex = 21;
@@ -283,7 +287,7 @@
             // 
             // OpenCellButton
             // 
-            this.OpenCellButton.Location = new System.Drawing.Point(375, 234);
+            this.OpenCellButton.Location = new System.Drawing.Point(413, 82);
             this.OpenCellButton.Name = "OpenCellButton";
             this.OpenCellButton.Size = new System.Drawing.Size(75, 23);
             this.OpenCellButton.TabIndex = 22;
@@ -322,12 +326,61 @@
             this.dataGridView2.Visible = false;
             this.dataGridView2.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_CellMouseClick);
             // 
+            // AttensionText
+            // 
+            this.AttensionText.AutoSize = true;
+            this.AttensionText.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Bold);
+            this.AttensionText.ForeColor = System.Drawing.Color.Red;
+            this.AttensionText.Location = new System.Drawing.Point(194, 13);
+            this.AttensionText.Name = "AttensionText";
+            this.AttensionText.Size = new System.Drawing.Size(125, 27);
+            this.AttensionText.TabIndex = 25;
+            this.AttensionText.Text = "ВНИМАНИЕ";
+            this.AttensionText.Visible = false;
+            // 
+            // AttensionText2
+            // 
+            this.AttensionText2.AutoSize = true;
+            this.AttensionText2.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Bold);
+            this.AttensionText2.Location = new System.Drawing.Point(23, 174);
+            this.AttensionText2.Name = "AttensionText2";
+            this.AttensionText2.Size = new System.Drawing.Size(419, 27);
+            this.AttensionText2.TabIndex = 26;
+            this.AttensionText2.Text = "Включен контрольный режим, ведите себя";
+            this.AttensionText2.Visible = false;
+            // 
+            // AttensionText3
+            // 
+            this.AttensionText3.AutoSize = true;
+            this.AttensionText3.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Bold);
+            this.AttensionText3.Location = new System.Drawing.Point(23, 201);
+            this.AttensionText3.Name = "AttensionText3";
+            this.AttensionText3.Size = new System.Drawing.Size(446, 27);
+            this.AttensionText3.TabIndex = 27;
+            this.AttensionText3.Text = "максимально правдоподобно. Результат игры";
+            this.AttensionText3.Visible = false;
+            // 
+            // AttensionText4
+            // 
+            this.AttensionText4.AutoSize = true;
+            this.AttensionText4.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Bold);
+            this.AttensionText4.Location = new System.Drawing.Point(23, 228);
+            this.AttensionText4.Name = "AttensionText4";
+            this.AttensionText4.Size = new System.Drawing.Size(276, 27);
+            this.AttensionText4.TabIndex = 28;
+            this.AttensionText4.Text = "Будет записан в статистику";
+            this.AttensionText4.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(520, 327);
+            this.Controls.Add(this.AttensionText4);
+            this.Controls.Add(this.AttensionText3);
+            this.Controls.Add(this.AttensionText2);
+            this.Controls.Add(this.AttensionText);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.ControlGameButton);
             this.Controls.Add(this.dataGridView1);
@@ -385,6 +438,10 @@
         private System.Windows.Forms.Button OpenCellButton;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Label AttensionText;
+        private System.Windows.Forms.Label AttensionText2;
+        private System.Windows.Forms.Label AttensionText3;
+        private System.Windows.Forms.Label AttensionText4;
     }
 }
 

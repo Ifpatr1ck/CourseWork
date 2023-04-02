@@ -17,6 +17,7 @@ namespace CourseWork
         {
             InitializeComponent();
         }
+        bool controlgame = true;
         Random rand = new Random();
         public int x, y;
         private void FAQButton_Click(object sender, EventArgs e)
@@ -119,13 +120,37 @@ namespace CourseWork
         }
         private void ControlGameButton_Click(object sender, EventArgs e)
         {
-            ButtonOfCancel.Visible = true;
-            BuyTicketButton.Visible = true;
-            Balance.Visible = true;
-            FAQButton.Visible = false;
-            ControlGameButton.Visible = false;
-            dataGridView2.Visible = false;
-            OpenCellButton.Visible = false;
+            if (controlgame)
+            {
+                AttensionText.Visible = true;
+                AttensionText2.Visible = true;
+                AttensionText3.Visible = true;
+                AttensionText4.Visible = true;
+                ButtonOfCancel.Visible = true;
+                BuyTicketButton.Visible = true;
+                Balance.Visible = true;
+                FAQButton.Visible = false;
+                ControlGameButton.Visible = false;
+                dataGridView2.Visible = false;
+                OpenCellButton.Visible = false;
+            }
+            else 
+            {
+
+                AttensionText.Visible = false;
+                AttensionText2.Visible = false;
+                AttensionText3.Visible = false;
+                AttensionText4.Visible = false;
+                ButtonOfCancel.Visible = false;
+                BuyTicketButton.Visible = false;
+                ButtonOfCancel.Visible = true;
+                BuyTicketButton.Visible = true;
+                Balance.Visible = true;
+                FAQButton.Visible = false;
+                ControlGameButton.Visible = false;
+                dataGridView2.Visible = false;
+                OpenCellButton.Visible = false;
+            }
         }
         private void BuyTicketButton_Click(object sender, EventArgs e)
         {
@@ -190,11 +215,13 @@ namespace CourseWork
                 count = 0;
                 MessageBox.Show("Ты проиграл :с");
                 ControlGameButton_Click(sender, e);
+                controlgame = false;
             }
             if (count == 2)
             {
                 MessageBox.Show("Ты победил! :D");
                 ControlGameButton_Click(sender, e);
+                controlgame = false;
             }
         }
     }
