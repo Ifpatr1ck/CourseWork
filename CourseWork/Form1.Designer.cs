@@ -50,7 +50,9 @@
             this.BuyTicketButton = new System.Windows.Forms.Button();
             this.OpenCellButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // CommonGameButton
@@ -288,7 +290,7 @@
             this.OpenCellButton.Text = "Раскрыть поле";
             this.OpenCellButton.UseVisualStyleBackColor = true;
             this.OpenCellButton.Visible = false;
-            this.OpenCellButton.Click += new System.EventHandler(this.button1_Click);
+            this.OpenCellButton.Click += new System.EventHandler(this.OpenCellButton_Click);
             // 
             // dataGridView1
             // 
@@ -303,12 +305,30 @@
             this.dataGridView1.TabIndex = 23;
             this.dataGridView1.Visible = false;
             // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.ColumnHeadersVisible = false;
+            this.dataGridView2.Location = new System.Drawing.Point(156, 49);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.RowTemplate.Height = 45;
+            this.dataGridView2.Size = new System.Drawing.Size(227, 93);
+            this.dataGridView2.TabIndex = 24;
+            this.dataGridView2.Visible = false;
+            this.dataGridView2.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_CellMouseClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(520, 327);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.ControlGameButton);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.OpenCellButton);
@@ -334,6 +354,7 @@
             this.Name = "Form1";
             this.Text = "Лотерея";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -363,6 +384,7 @@
         private System.Windows.Forms.Button BuyTicketButton;
         private System.Windows.Forms.Button OpenCellButton;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }
 

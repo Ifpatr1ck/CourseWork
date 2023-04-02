@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,8 @@ namespace CourseWork
         {
             InitializeComponent();
         }
-
+        Random rand = new Random();
+        public int x, y;
         private void FAQButton_Click(object sender, EventArgs e)
         {
             ButtonOfCancel.Visible = true;
@@ -37,11 +39,11 @@ namespace CourseWork
             Text7.Visible = true;
             Text8.Visible = true;
         }
-
         private void ButtonOfCancel_Click(object sender, EventArgs e)
         {
             OpenCellButton.Visible = false;
             dataGridView1.Visible = false;
+            dataGridView2.Visible = false;
             FAQCommonGame.BackColor = Color.White;
             FAQControlGame.BackColor = Color.White;
             FAQMultipleGame.BackColor = Color.White;
@@ -72,7 +74,6 @@ namespace CourseWork
             BuyTicketButton.Visible = false;
 
         }
-
         private void FAQCommonGame_Click(object sender, EventArgs e)
         {
             Text1.Text = "В обычном режиме вам выдается виртульная валюта в размере";
@@ -87,7 +88,6 @@ namespace CourseWork
             FAQControlGame.BackColor = Color.White;
             FAQMultipleGame.BackColor = Color.White;
         }
-
         private void FAQControlGame_Click(object sender, EventArgs e)
         {
             Text2.Text = "  Контрольный режим включается выставлением флажка и ";
@@ -102,7 +102,6 @@ namespace CourseWork
             FAQControlGame.BackColor = Color.Green;
             FAQMultipleGame.BackColor = Color.White;
         }
-
         private void FAQMultipleGame_Click(object sender, EventArgs e)
         {
 
@@ -118,7 +117,6 @@ namespace CourseWork
             FAQControlGame.BackColor = Color.White;
             FAQMultipleGame.BackColor = Color.Green;
         }
-
         private void ControlGameButton_Click(object sender, EventArgs e)
         {
             ButtonOfCancel.Visible = true;
@@ -127,27 +125,62 @@ namespace CourseWork
             FAQButton.Visible = false;
             ControlGameButton.Visible = false;
         }
-
         private void BuyTicketButton_Click(object sender, EventArgs e)
         {
+            BuyTicketButton.Visible = false;
+            List<int> spisok = new List<int> { };
             OpenCellButton.Visible = true;
             dataGridView1.ColumnCount = 2;
             dataGridView1.RowCount = 2;
-            dataGridView1.Visible = true;
-           
+            dataGridView2.ColumnCount = 2;
+            dataGridView2.RowCount = 2;
+            dataGridView2.Visible = true;
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    dataGridView2[j, i].Value = null;
+                }
+            }
+            bool giga = true;
+            while(giga)
+            {
+                int z, count = 0;
+                for (int i = 0; i < 2; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        z = rand.Next(0, 2);
+                        dataGridView1[j, i].Value = z;
+                        spisok.Add(z);
+                    }
+                }
+                foreach (int i in spisok) if (i == 1) count++;
+                if (count == 2) giga = false;
+                else spisok.Clear();
+                count = 0;
+            }
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void dataGridView2_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-
+            x = e.RowIndex;
+            y = e.ColumnIndex;
         }
-
-        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void OpenCellButton_Click(object sender, EventArgs e)
         {
-            int x = e.RowIndex;
-            int y = e.ColumnIndex;
-            //dataGridView1[y][x];
+
+            int z = (int)dataGridView1[y, x].Value;
+            if (z == 1)
+            {
+                dataGridView2[y, x].Value = 1;
+                dataGridView1[y, x].Style.BackColor = Color.Green;
+            }
+            else
+            {
+                dataGridView2[y, x].Value = 0;
+                dataGridView1[y, x].Style.BackColor = Color.Red;
+            }
         }
     }
 }
