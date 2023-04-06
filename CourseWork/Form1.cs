@@ -352,7 +352,39 @@ namespace CourseWork
 
         private void OpenCellButtonGambilingMODE_Click(object sender, EventArgs e)
         {
+            if (GambilingMODE)
+            {
+                if ((int)dataGridView1[y, x].Value == 0)
+                {
 
+                }
+                else
+                {
+                    if (y1 != y || x1 != x)
+                    {
+                        count++;
+                        PickUpButton.Visible = true;
+                        dataGridView2[y, x].Value = "$$$";
+                        dataGridView2[y, x].Style.BackColor = Color.Green;
+                        y1 = y;
+                        x1 = x;
+
+
+                       result();
+                       count = 0;
+                       PickUpButton.Visible = false;
+                       CommonGameButton_Click(sender, e);
+                    }
+                }
+            }
+            else
+            {
+
+            }
+            if (count == 5) //exit to menu
+            {
+
+            }
         }
 
         private void BuyTicketButtonGambilingMode_Click(object sender, EventArgs e)
