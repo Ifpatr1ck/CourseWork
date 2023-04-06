@@ -21,7 +21,7 @@ namespace CourseWork
             ExitButton.Visible = true;
             OpenCellButton.Visible = false;
             AuthorButton.Visible = true;
-            ControlGameButton.Visible = true;
+            PlayGameButton.Visible = true;
             FAQButton.Visible = true;
             PickUpButton.Visible = false;
             AttensionText.Visible = false;
@@ -54,16 +54,16 @@ namespace CourseWork
         {
             InitializeComponent();
         }
-        bool FIRSTcontrolgame = true;
+        bool FIRSTcontrolgame = true, GambilingMODE = false;
         Random rand = new Random();
-        public int x, y, money = 1100;
+        public int x, y, money = 1100, GambilingMODECount = 0;
         private void FAQButton_Click(object sender, EventArgs e)
         {
             ExitButton.Visible = false;
             Balance.Visible = false;
             AuthorButton.Visible = false;
             ButtonOfCancel.Visible = true;
-            ControlGameButton.Visible = false;
+            PlayGameButton.Visible = false;
             CommonGameButton.Visible = false;
             MultipleGameButton.Visible = false;
             FAQButton.Visible = false;
@@ -111,7 +111,7 @@ namespace CourseWork
             Text6.Visible = false;
             Text7.Visible = false;
             Text8.Visible = false;
-            ControlGameButton.Visible = true;
+            PlayGameButton.Visible = true;
             FAQButton.Visible = true;
             FAQCommonGame.Visible = false;
             FAQControlGame.Visible = false;
@@ -177,7 +177,7 @@ namespace CourseWork
                 ButtonOfCancel.Visible = true;
                 BuyTicketButton.Visible = true;
                 FAQButton.Visible = false;
-                ControlGameButton.Visible = false;
+                PlayGameButton.Visible = false;
                 dataGridView2.Visible = false;
                 OpenCellButton.Visible = false;
             }
@@ -197,7 +197,7 @@ namespace CourseWork
                 BuyTicketButton.Visible = false;
                 ButtonOfCancel.Visible = true;
                 FAQButton.Visible = false;
-                ControlGameButton.Visible = false;
+                PlayGameButton.Visible = false;
                 dataGridView2.Visible = false;
                 OpenCellButton.Visible = false;
             }
@@ -317,7 +317,6 @@ namespace CourseWork
             MoneyText.Text = Convert.ToString(money + 500);
             money += 500;
         }
-
         private void CommonGameButton_Click(object sender, EventArgs e)
         {
             MoneyText.Visible = true;
@@ -328,6 +327,77 @@ namespace CourseWork
             Balance.Visible = true;
             ButtonOfCancel.Visible = true;
         }
+        private void MultipleGameButton_Click(object sender, EventArgs e)
+        {
+            CommonGameButton.Visible = false;
+            MultipleGameButton.Visible = false;
+            GambilingModeButton.Visible = true;
+            NonGambilingModeButton.Visible = true;
+        }
+        private void NonGambilingModeButton_Click(object sender, EventArgs e)
+        {
+            GambilingModeButton.Visible = false;
+            NonGambilingModeButton.Visible = false;
+            BuyTicketButtonGambilingMode.Visible = true;
+            ButtonOfCancel.Visible = true;
+        }
+
+        private void GambilingModeButton_Click(object sender, EventArgs e)
+        {
+            GambilingModeButton.Visible = false;
+            NonGambilingModeButton.Visible = false;
+            BuyTicketButtonGambilingMode.Visible = true;
+            ButtonOfCancel.Visible = true;
+        }
+
+        private void OpenCellButtonGambilingMODE_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BuyTicketButtonGambilingMode_Click(object sender, EventArgs e)
+        {
+            GambilingMODECount++;
+            ButtonOfCancel.Visible = false;
+            BuyTicketButtonGambilingMode.Visible = false;
+            List<int> spisok = new List<int> { };
+            OpenCellButtonGambilingMODE.Visible = true;
+            dataGridView1.ColumnCount = 2;
+            dataGridView1.RowCount = 2;
+            dataGridView2.ColumnCount = 2;
+            dataGridView2.RowCount = 2;
+            dataGridView2.Visible = true;
+            //Clear the cells
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    dataGridView2[j, i].Value = null;
+                    dataGridView2[j, i].Style.BackColor = Color.White;
+                }
+            }
+            bool boolVar = true;
+            //fill random 2 cells "1" and 2 cell "0"
+            while (boolVar)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        dataGridView1[j, i].Value = rand.Next(0, 2);
+                        spisok.Add((int)dataGridView1[j, i].Value);
+                    }
+                }
+                foreach (int i in spisok) if (i == 1) count++;
+                if (count == 2) boolVar = false;
+                else spisok.Clear();
+                count = 0;
+            }
+            y1 = -1;
+            x1 = -1;
+        }
+
+
         public int y1 = -1, x1 = -1;
         private void OpenCellButton_Click(object sender, EventArgs e)
         {

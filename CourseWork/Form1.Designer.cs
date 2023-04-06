@@ -30,7 +30,7 @@
         {
             this.CommonGameButton = new System.Windows.Forms.Button();
             this.MultipleGameButton = new System.Windows.Forms.Button();
-            this.ControlGameButton = new System.Windows.Forms.Button();
+            this.PlayGameButton = new System.Windows.Forms.Button();
             this.ButtonOfCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.FAQButton = new System.Windows.Forms.Button();
@@ -60,6 +60,10 @@
             this.ExitButton = new System.Windows.Forms.Button();
             this.MoneyText = new System.Windows.Forms.Label();
             this.CreditButton = new System.Windows.Forms.Button();
+            this.NonGambilingModeButton = new System.Windows.Forms.Button();
+            this.GambilingModeButton = new System.Windows.Forms.Button();
+            this.BuyTicketButtonGambilingMode = new System.Windows.Forms.Button();
+            this.OpenCellButtonGambilingMODE = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -86,18 +90,19 @@
             this.MultipleGameButton.Text = "Залповый режим";
             this.MultipleGameButton.UseVisualStyleBackColor = true;
             this.MultipleGameButton.Visible = false;
+            this.MultipleGameButton.Click += new System.EventHandler(this.MultipleGameButton_Click);
             // 
-            // ControlGameButton
+            // PlayGameButton
             // 
-            this.ControlGameButton.Font = new System.Drawing.Font("Comic Sans MS", 14F);
-            this.ControlGameButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ControlGameButton.Location = new System.Drawing.Point(189, 137);
-            this.ControlGameButton.Name = "ControlGameButton";
-            this.ControlGameButton.Size = new System.Drawing.Size(141, 51);
-            this.ControlGameButton.TabIndex = 2;
-            this.ControlGameButton.Text = "Играть";
-            this.ControlGameButton.UseVisualStyleBackColor = true;
-            this.ControlGameButton.Click += new System.EventHandler(this.ControlGameButton_Click);
+            this.PlayGameButton.Font = new System.Drawing.Font("Comic Sans MS", 14F);
+            this.PlayGameButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.PlayGameButton.Location = new System.Drawing.Point(189, 137);
+            this.PlayGameButton.Name = "PlayGameButton";
+            this.PlayGameButton.Size = new System.Drawing.Size(141, 51);
+            this.PlayGameButton.TabIndex = 2;
+            this.PlayGameButton.Text = "Играть";
+            this.PlayGameButton.UseVisualStyleBackColor = true;
+            this.PlayGameButton.Click += new System.EventHandler(this.ControlGameButton_Click);
             // 
             // ButtonOfCancel
             // 
@@ -194,9 +199,9 @@
             this.Text3.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Text3.Location = new System.Drawing.Point(8, 99);
             this.Text3.Name = "Text3";
-            this.Text3.Size = new System.Drawing.Size(480, 23);
+            this.Text3.Size = new System.Drawing.Size(498, 23);
             this.Text3.TabIndex = 11;
-            this.Text3.Text = "Выиграшное поле отмечается зеленым цветом и знаком \"@\"";
+            this.Text3.Text = "Выиграшное поле отмечается зеленым цветом и знаком \"$$$\"";
             this.Text3.Visible = false;
             // 
             // Text4
@@ -432,19 +437,66 @@
             this.CreditButton.Visible = false;
             this.CreditButton.Click += new System.EventHandler(this.CreditButton_Click);
             // 
+            // NonGambilingModeButton
+            // 
+            this.NonGambilingModeButton.Location = new System.Drawing.Point(65, 145);
+            this.NonGambilingModeButton.Name = "NonGambilingModeButton";
+            this.NonGambilingModeButton.Size = new System.Drawing.Size(124, 39);
+            this.NonGambilingModeButton.TabIndex = 34;
+            this.NonGambilingModeButton.Text = "Неазартный режим";
+            this.NonGambilingModeButton.UseVisualStyleBackColor = true;
+            this.NonGambilingModeButton.Visible = false;
+            this.NonGambilingModeButton.Click += new System.EventHandler(this.NonGambilingModeButton_Click);
+            // 
+            // GambilingModeButton
+            // 
+            this.GambilingModeButton.Location = new System.Drawing.Point(334, 145);
+            this.GambilingModeButton.Name = "GambilingModeButton";
+            this.GambilingModeButton.Size = new System.Drawing.Size(124, 39);
+            this.GambilingModeButton.TabIndex = 35;
+            this.GambilingModeButton.Text = "Аразтный режим";
+            this.GambilingModeButton.UseVisualStyleBackColor = true;
+            this.GambilingModeButton.Visible = false;
+            this.GambilingModeButton.Click += new System.EventHandler(this.GambilingModeButton_Click);
+            // 
+            // BuyTicketButtonGambilingMode
+            // 
+            this.BuyTicketButtonGambilingMode.Location = new System.Drawing.Point(414, 44);
+            this.BuyTicketButtonGambilingMode.Name = "BuyTicketButtonGambilingMode";
+            this.BuyTicketButtonGambilingMode.Size = new System.Drawing.Size(94, 32);
+            this.BuyTicketButtonGambilingMode.TabIndex = 36;
+            this.BuyTicketButtonGambilingMode.Text = "Купить билет";
+            this.BuyTicketButtonGambilingMode.UseVisualStyleBackColor = true;
+            this.BuyTicketButtonGambilingMode.Click += new System.EventHandler(this.BuyTicketButtonGambilingMode_Click);
+            // 
+            // OpenCellButtonGambilingMODE
+            // 
+            this.OpenCellButtonGambilingMODE.Location = new System.Drawing.Point(414, 82);
+            this.OpenCellButtonGambilingMODE.Name = "OpenCellButtonGambilingMODE";
+            this.OpenCellButtonGambilingMODE.Size = new System.Drawing.Size(94, 23);
+            this.OpenCellButtonGambilingMODE.TabIndex = 37;
+            this.OpenCellButtonGambilingMODE.Text = "Раскрыть поле";
+            this.OpenCellButtonGambilingMODE.UseVisualStyleBackColor = true;
+            this.OpenCellButtonGambilingMODE.Visible = false;
+            this.OpenCellButtonGambilingMODE.Click += new System.EventHandler(this.OpenCellButtonGambilingMODE_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(520, 327);
+            this.Controls.Add(this.OpenCellButtonGambilingMODE);
+            this.Controls.Add(this.BuyTicketButtonGambilingMode);
+            this.Controls.Add(this.GambilingModeButton);
+            this.Controls.Add(this.NonGambilingModeButton);
             this.Controls.Add(this.CreditButton);
             this.Controls.Add(this.MoneyText);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.AuthorButton);
             this.Controls.Add(this.PickUpButton);
             this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.ControlGameButton);
+            this.Controls.Add(this.PlayGameButton);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.OpenCellButton);
             this.Controls.Add(this.BuyTicketButton);
@@ -483,7 +535,7 @@
 
         private System.Windows.Forms.Button CommonGameButton;
         private System.Windows.Forms.Button MultipleGameButton;
-        private System.Windows.Forms.Button ControlGameButton;
+        private System.Windows.Forms.Button PlayGameButton;
         private System.Windows.Forms.Button ButtonOfCancel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button FAQButton;
@@ -513,6 +565,10 @@
         private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.Label MoneyText;
         private System.Windows.Forms.Button CreditButton;
+        private System.Windows.Forms.Button NonGambilingModeButton;
+        private System.Windows.Forms.Button GambilingModeButton;
+        private System.Windows.Forms.Button BuyTicketButtonGambilingMode;
+        private System.Windows.Forms.Button OpenCellButtonGambilingMODE;
     }
 }
 
