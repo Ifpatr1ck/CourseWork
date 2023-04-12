@@ -467,11 +467,12 @@
             this.BuyTicketButtonGambilingMode.TabIndex = 36;
             this.BuyTicketButtonGambilingMode.Text = "Купить билет";
             this.BuyTicketButtonGambilingMode.UseVisualStyleBackColor = true;
+            this.BuyTicketButtonGambilingMode.Visible = false;
             this.BuyTicketButtonGambilingMode.Click += new System.EventHandler(this.BuyTicketButtonGambilingMode_Click);
             // 
             // OpenCellButtonGambilingMODE
             // 
-            this.OpenCellButtonGambilingMODE.Location = new System.Drawing.Point(414, 82);
+            this.OpenCellButtonGambilingMODE.Location = new System.Drawing.Point(412, 82);
             this.OpenCellButtonGambilingMODE.Name = "OpenCellButtonGambilingMODE";
             this.OpenCellButtonGambilingMODE.Size = new System.Drawing.Size(94, 23);
             this.OpenCellButtonGambilingMODE.TabIndex = 37;

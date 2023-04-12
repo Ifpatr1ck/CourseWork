@@ -17,6 +17,8 @@ namespace CourseWork
     {
         void MainMenu()
         {
+            OpenCellButtonGambilingMODE.Visible = false;
+            BuyTicketButtonGambilingMode.Visible = false;
             MoneyText.Visible = false;
             ExitButton.Visible = true;
             OpenCellButton.Visible = false;
@@ -35,7 +37,7 @@ namespace CourseWork
             dataGridView2.Visible = false;
 
         }
-        void result()
+        void result(bool total)
         {
             for (int i = 0; i < 2; i++)
             {
@@ -43,8 +45,16 @@ namespace CourseWork
                 {
                     if ((int)dataGridView1[j, i].Value == 1)
                     {
-                        dataGridView2[j, i].Style.BackColor = Color.Red;
-                        dataGridView2[j, i].Value = "$$$";
+                        if (total)
+                        {
+                            dataGridView2[j, i].Style.BackColor = Color.Green;
+                            dataGridView2[j, i].Value = "$$$";
+                        }
+                        else
+                        {
+                            dataGridView2[j, i].Style.BackColor = Color.Red;
+                            dataGridView2[j, i].Value = "$$$";
+                        }
                     }
                     else dataGridView2[j, i].Style.BackColor = Color.Red;
                 }
@@ -54,9 +64,9 @@ namespace CourseWork
         {
             InitializeComponent();
         }
-        bool FIRSTcontrolgame = true, GambilingMODE = false;
         Random rand = new Random();
-        public int x, y, money = 1100, GambilingMODECount = 0;
+        bool FIRSTcontrolgame = true, GambilingMODE = false, NonGambilingMODE = false, ActiveCredit = false;
+        public int x, y, money = 1100, GambilingMODECount = 0,count = 0, count1 = 0, Debt, y1 = -1, x1 = -1;
         private void FAQButton_Click(object sender, EventArgs e)
         {
             ExitButton.Visible = false;
@@ -82,6 +92,17 @@ namespace CourseWork
         }
         private void ButtonOfCancel_Click(object sender, EventArgs e)
         {
+            count1 = 0;
+            count = 0;
+            BuyTicketButtonGambilingMode.Visible = false;
+            AttensionText.Visible = false;
+            AttensionText2.Visible = false;
+            AttensionText3.Visible = false;
+            AttensionText4.Visible = false;
+            checkBox1.Visible = false;
+            NonGambilingModeButton.Visible = false;
+            GambilingModeButton.Visible = false;
+            OpenCellButtonGambilingMODE.Visible = false;
             MoneyText.Visible = false;
             CommonGameButton.Visible = false;
             MultipleGameButton.Visible = false;
@@ -252,13 +273,12 @@ namespace CourseWork
             x = e.RowIndex;
             y = e.ColumnIndex;
         }
-        int count = 0; //count of prize field
         private void PickUpButton_Click(object sender, EventArgs e)
         {
-            if (FIRSTcontrolgame)
+            if (FIRSTcontrolgame) //If it's a first game of player and he decide to leave before the lose
             {
                 Balance.Visible = false;
-                result();
+                result(true);
                 MessageBox.Show("Теперь вам доступны новые режими, с ними можно ознамиться в разделе 'FAQ'");
                 MainMenu();
                 FIRSTcontrolgame = false;
@@ -271,20 +291,20 @@ namespace CourseWork
             }
             else
             {
-                if (ActiveCredit)
+                if (ActiveCredit) //If it's a first game of player and he decide to leave before the lose but he has a credit
                 {
                     MoneyText.Text = Convert.ToString(money + 125);
                     money += 125;
                     Debt -= 25;
                 }
-                else
+                else //If it's a first game of player and he decide to leave before the lose and he has no a credit
                 {
                     MoneyText.Text = Convert.ToString(money + 150);
                     money += 150;
                 }
                 OpenCellButton.Visible = false;
                 if (Debt == 0) ActiveCredit = false;
-                result();
+                result(false);
                 PickUpButton.Visible = false;
                 CommonGameButton.Visible = false;
                 MultipleGameButton.Visible = false;
@@ -307,8 +327,6 @@ namespace CourseWork
         {
             Application.Exit();
         }
-        bool ActiveCredit = false;
-        public int Debt;
         private void CreditButton_Click(object sender, EventArgs e)
         {
             Debt = 500;
@@ -336,60 +354,101 @@ namespace CourseWork
         }
         private void NonGambilingModeButton_Click(object sender, EventArgs e)
         {
+            NonGambilingMODE = true;
             GambilingModeButton.Visible = false;
             NonGambilingModeButton.Visible = false;
             BuyTicketButtonGambilingMode.Visible = true;
             ButtonOfCancel.Visible = true;
+            OpenCellButtonGambilingMODE.Visible = false;
         }
-
         private void GambilingModeButton_Click(object sender, EventArgs e)
         {
+            GambilingMODE = true;
             GambilingModeButton.Visible = false;
             NonGambilingModeButton.Visible = false;
             BuyTicketButtonGambilingMode.Visible = true;
             ButtonOfCancel.Visible = true;
+            OpenCellButtonGambilingMODE.Visible = false;
         }
-
         private void OpenCellButtonGambilingMODE_Click(object sender, EventArgs e)
         {
             if (GambilingMODE)
             {
                 if ((int)dataGridView1[y, x].Value == 0)
                 {
-
+                    GambilingMODECount = 0;
+                    count1 +=2;
+                    result(false); 
+                    GambilingModeButton_Click(sender, e);
                 }
                 else
                 {
                     if (y1 != y || x1 != x)
                     {
-                        count++;
-                        PickUpButton.Visible = true;
+                        GambilingMODECount++;
+                        if(GambilingMODECount == 1)
+                        {
+                            count1++;
+                            dataGridView2[y, x].Value = "$$$";
+                            dataGridView2[y, x].Style.BackColor = Color.Green;
+                            y1 = y;
+                            x1 = x;
+                        }
+                        else
+                        {
+                            count1++;
+                            dataGridView2[y, x].Value = "$$$";
+                            dataGridView2[y, x].Style.BackColor = Color.Green;
+                            y1 = y;
+                            x1 = x;
+                            GambilingMODECount = 0;
+                            result(true);
+                            GambilingModeButton_Click(sender, e);
+                        }
+                    }
+                }
+                if (count1 >= 10) //exit to menu
+                {
+                    MessageBox.Show("Статистика");
+                    MainMenu();
+                    count1 = 0;
+                    GambilingMODE = false;
+                }
+
+            }
+            if (NonGambilingMODE)
+            {
+                if ((int)dataGridView1[y, x].Value == 0)
+                {
+                    count1++;
+                    result(false);
+                    NonGambilingModeButton_Click(sender, e);
+                }
+                else
+                {
+                    if (y1 != y || x1 != x)
+                    {
+                        count1++;
                         dataGridView2[y, x].Value = "$$$";
                         dataGridView2[y, x].Style.BackColor = Color.Green;
                         y1 = y;
                         x1 = x;
-
-
-                       result();
-                       count = 0;
-                       PickUpButton.Visible = false;
-                       CommonGameButton_Click(sender, e);
+                        PickUpButton.Visible = false;
+                        result(true);
+                        NonGambilingModeButton_Click(sender, e);
                     }
                 }
-            }
-            else
-            {
-
-            }
-            if (count == 5) //exit to menu
-            {
-
+                if (count1 >= 5) //exit to menu
+                {
+                    MessageBox.Show("Статистика");
+                    MainMenu();
+                    count1 = 0;
+                    NonGambilingMODE = false;
+                }
             }
         }
-
         private void BuyTicketButtonGambilingMode_Click(object sender, EventArgs e)
         {
-            GambilingMODECount++;
             ButtonOfCancel.Visible = false;
             BuyTicketButtonGambilingMode.Visible = false;
             List<int> spisok = new List<int> { };
@@ -428,18 +487,15 @@ namespace CourseWork
             y1 = -1;
             x1 = -1;
         }
-
-
-        public int y1 = -1, x1 = -1;
         private void OpenCellButton_Click(object sender, EventArgs e)
         {
-            if ((int)dataGridView1[y, x].Value == 0)
+            if ((int)dataGridView1[y, x].Value == 0) //If player lose
             {
-                if (FIRSTcontrolgame)
+                if (FIRSTcontrolgame) //If if it's a first game of player
                 {
                     count = 0;
                     FIRSTcontrolgame = false;
-                    result();
+                    result(false);
                     MessageBox.Show("Ты проиграл, но теперь тебе доступны новые режимы игры. Ознакомится с ними ты можешь в разделе 'FAQ'");
                     MainMenu();
                     AttensionText.Visible = false;
@@ -447,12 +503,12 @@ namespace CourseWork
                     AttensionText3.Visible = false;
                     AttensionText4.Visible = false;
                 }
-                else
+                else //If it's not a first game of player
                 {
                     count = 0;
-                    if (money >= 100)
+                    if (money >= 100) //If player have money
                     {
-                        result();
+                        result(false);
                         OpenCellButton.Visible = false;
                         PickUpButton.Visible = false;
                         CommonGameButton_Click(sender, e);
@@ -461,13 +517,13 @@ namespace CourseWork
                         AttensionText3.Visible = false;
                         AttensionText4.Visible = false;
                     }
-                    else
+                    else //If player has no money
                     {
-                        if (!ActiveCredit) CreditButton.Visible = true;
-                        else
+                        if (!ActiveCredit) CreditButton.Visible = true; //If player has no a credit
+                        else //If player already have a credit
                         {
                             count = 0;
-                            result();
+                            result(false);
                             MessageBox.Show("Вы проиграли все свои деньги: c");
                             MainMenu();
 
@@ -476,9 +532,9 @@ namespace CourseWork
                 }
 
             }
-            else
+            else //If player still no lose
             {
-                if (y1 != y || x1 != x)
+                if (y1 != y || x1 != x) //If is been opening cell was no already opened
                 {
                     count++;
                     PickUpButton.Visible = true;
@@ -486,39 +542,35 @@ namespace CourseWork
                     dataGridView2[y, x].Style.BackColor = Color.Green;
                     y1 = y;
                     x1 = x;
-
-
-                    if (count == 1)
+                    if (count == 1) PickUpButton.Visible = true; //Now player can leave before lose
+                    else //If player decided to play continue
                     {
-                        PickUpButton.Visible = true;
-                    }
-                    else
-                    {
-                        if (FIRSTcontrolgame)
+                        if (FIRSTcontrolgame) //If it's a first game of player and he win the best prize
                         {
-                            result();
+                            result(true);
                             FIRSTcontrolgame = false;
                             count = 0;
                             PickUpButton.Visible = false;
                             MessageBox.Show("Ты победил! И теперь тебе доступны новые режимы игры. Ознакомится с ними ты можешь в разделе 'FAQ'");
                             MainMenu();
                         }
-                        else
+                        else //If it's no a first game of player and he win the best prize
                         {
-                            if (ActiveCredit)
+                            OpenCellButton.Visible = false;
+                            if (ActiveCredit) //If player have a credit
                             {
-                                result();
+                                result(true);
                                 MoneyText.Text = Convert.ToString(money + 475);
                                 money += 475;
                                 Debt -= 25;
                                 CommonGameButton_Click(sender, e);
                                 if (Debt == 0) ActiveCredit = false;
                             }
-                            else
+                            else //If player has no a credit
                             {
                                 MoneyText.Text = Convert.ToString(money + 500);
                                 money += 500;
-                                result();
+                                result(true);
                                 count = 0;
                                 PickUpButton.Visible = false;
                                 CommonGameButton_Click(sender, e);
