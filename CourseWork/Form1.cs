@@ -17,6 +17,9 @@ namespace CourseWork
     {
         void MainMenu()
         {
+            Balance.Visible = false;
+            money = 1000;
+            MoneyText.Text = Convert.ToString(money);
             OpenCellButtonGambilingMODE.Visible = false;
             BuyTicketButtonGambilingMode.Visible = false;
             MoneyText.Visible = false;
@@ -329,6 +332,7 @@ namespace CourseWork
         }
         private void CreditButton_Click(object sender, EventArgs e)
         {
+            BuyTicketButton.Visible = true;
             Debt = 500;
             ActiveCredit = true;
             CreditButton.Visible = false;
@@ -519,9 +523,17 @@ namespace CourseWork
                     }
                     else //If player has no money
                     {
-                        if (!ActiveCredit) CreditButton.Visible = true; //If player has no a credit
+                        if (!ActiveCredit) 
+                        {
+                            PickUpButton.Visible = false;
+                            ButtonOfCancel.Visible = true;
+                            OpenCellButton.Visible = false;
+                            result(false);
+                            CreditButton.Visible = true;
+                        }//If player has no a credit
                         else //If player already have a credit
                         {
+                            Balance.Visible = false;
                             count = 0;
                             result(false);
                             MessageBox.Show("Вы проиграли все свои деньги: c");
@@ -583,4 +595,3 @@ namespace CourseWork
         }
     }
 }
-
